@@ -1,0 +1,15 @@
+{
+  "name": "express-api-demo",
+  "version": "1.0.0",
+  "description": "Demo de creacion de apis con express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "allan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}

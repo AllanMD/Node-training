@@ -1,0 +1,23 @@
+- Instalar node y npm
+https://www.hostinger.es/tutoriales/instalar-node-js-ubuntu/
+
+- Express
+Express: Framework backend para creacion de apis
+
+https://expressjs.com/es/starter/installing.html --> documentacion oficial
+https://medium.com/@asfo/desarrollando-una-sencilla-api-rest-con-nodejs-y-express-cab0813f7e4b
+1. Iniciar proyecto con: npm init
+2. Completar nombre del paquete, descrpicion , archivo de entrada como index.js y autor (si queremos), el resto dejar como esta.
+3. npm install express --save para instalar la dependencia express 
+4. npm install body-parser --save para manejo de datos por post
+5. codear en el index.js
+
+Para generar una estructura de proyecto:
+
+- npm install express-generator -g
+- express "nombre_proyecto"
+
+NODEMON:
+Para no tener que reiniciar el servidor node en cada cambio:
+- https://nodemon.io/
+- si surge error al instalar, lo solucione usando: sudo npm install -g nodemon
