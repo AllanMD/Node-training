@@ -12,6 +12,13 @@ let user = {
     lastName: ""
 };
 
+class User {
+    constructor(name, lastName) { // TODO: agregar id
+        this.name = name;
+        this.lastName = lastName;
+    }
+}
+
 let response = {
     error: false,
     code: 200,
@@ -25,7 +32,7 @@ var myLogger = function (req, res, next) {
     console.log('LOGGED');
     next();
 };
-
+// TODO: preguntar
 app.use(myLogger);
 
 
@@ -46,7 +53,7 @@ app.get('/', function (req, res) {
  * Api para metodos post
  */
 app.post("/hola", function (req, res) {
-    res.send('Hola lcdtm');
+    res.status(200).send('Hola buen dia');
 });
 
 /**
@@ -60,21 +67,13 @@ app.route('/user')
             code: 200,
             message: ""
         };
-        if (user.name === '' || user.lastName === '') {
-            response = {
-                error: true,
-                code: 501,
-                message: "El usuario no ha sido creado"
-            };
-        } else {
-            response = {
-                error: false,
-                code: 200,
-                message: "Respuesta del usuario",
-                response: user
-            };
-        }
-        res.send(response);
+        getAll(function(error, result){
+            if(error){
+                res.status(500).send("Error obteniendo los usuarios");
+                throw error;
+            }
+            res.status(200).send(result);
+        });
     })
 
     .post(function (req, res) {
@@ -104,7 +103,8 @@ app.route('/user')
                 };
             }
         }
-        res.send(response);
+        save(user);
+        res.status(response.code).send(response);
     })
 
     .put(function (req, res) {
@@ -135,7 +135,7 @@ app.route('/user')
                 };
             }
         }
-        res.send(response);
+        res.status(response.code).send(response);
     })
 
     .delete(function (req, res) {
@@ -156,25 +156,40 @@ app.route('/user')
                 lastName: ''
             };
         }
-        res.send(response);
+        res.status(response.code).send(response);
     });
 
 /**
  * Para usar datos por parametro. Ejemplo: user/1
  */
 app.get('/user/:id', function (req, res, next) {
+    getById(req.params.id, function (error, result) {
+        if(error) {
+            throw error;
+        }
+        if(result.length > 0) {
+            var user = new User(result[0].name, result[0].last_name);
+            res.status(200).send(user);
+        }else{
+            res.status(404).send("No se encontro usuario con ese id");
+        }
+    });
     console.log('ID:', req.params.id);
-    res.send(req.params.id);
 });
+// terminar: busqueda con querys
+app.get('/users', function(req, res){
+    if(req.query.id){
+        console.log("ID:" + req.query.id);
+        res.send("200");
+    }
+})
 
 /**
  * Para usar datos por query. Ejemplo: /user?id=2
  */
-app.get('/users', function(req, res){
-    res.send(req.query.id); //TODO
+app.get('/users', function (req, res) {
+    res.send(req.query.name); //TODO
 });
-
-
 
 /**
  * Este metodo se ejecuta con cualquier tipo de peticion
@@ -199,7 +214,7 @@ app.use(function (req, res, next) {
 });
 
 /**
- * Manejo de errores
+ * Para manejo de errores (va al final) ?, ante los errores, lanza esto
  */
 app.use(function (err, req, res, next) {
     console.error(err.stack);
@@ -239,3 +254,60 @@ app.get('/ab(cd)?e', function (req, res) {
 app.get(/a/, function (req, res) {
     res.send('/a/');
 });
+
+
+// ----------- MYSQL --------------
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'node_mysql',
+    port: 3306
+});
+
+connection.connect(function (error) {
+    if (error) {
+        throw error;
+    } else {
+        console.log('Conexion correcta.');
+    }
+});
+
+function save(user) {
+    connection.query('INSERT INTO users(name, last_name) VALUES(?,?)', [user.name, user.lastName], function (error, result) {
+        if (error) {
+            throw error;
+        } else {
+            console.log(result);
+        }
+    }
+    );
+}
+
+function getAll(callback) {
+    connection.query('SELECT * FROM users', function (error, results, fields) {
+        if (error){
+            return callback(error);
+        }else{
+            return callback(null, results);
+        }
+    });
+}
+
+function getById(id, cb) { // hay que usar callbacks ya que las llamadas a base de datos son asincronas
+    connection.query('SELECT * FROM users WHERE user_id = ?', [id], function (error, result) { // funcion callback
+        if (error) {
+            return cb(error);
+        } else {
+            return cb(null, result); // retornamos un callback
+        }
+    });
+}
+// TODO: explicar callback
+
+getById(5, function (error, result) {
+    console.log("Resultado: " + result[0].name);
+})
+
+//connection.end();    // TODO: averiguar esto

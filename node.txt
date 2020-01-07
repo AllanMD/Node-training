@@ -21,3 +21,8 @@ NODEMON:
 Para no tener que reiniciar el servidor node en cada cambio:
 - https://nodemon.io/
 - si surge error al instalar, lo solucione usando: sudo npm install -g nodemon
+
+MYSQL con node.js
+https://www.linuxadictos.com/como-instalar-xampp-en-linux.html --> para instalar xampp en linux
+https://expressjs.com/es/guide/database-integration.html#mysql --> para instalar la dependencia en el proyecto y que quede en el package.json
+sudo /opt/lampp/manager-linux-x64.run --> comando para iniciar el panel de control xampp, tambien se puede iniciar los servidores mediante comandos
