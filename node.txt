@@ -8,8 +8,8 @@ https://expressjs.com/es/starter/installing.html --> documentacion oficial
 https://medium.com/@asfo/desarrollando-una-sencilla-api-rest-con-nodejs-y-express-cab0813f7e4b
 1. Iniciar proyecto con: npm init
 2. Completar nombre del paquete, descrpicion , archivo de entrada como index.js y autor (si queremos), el resto dejar como esta.
-3. npm install express --save para instalar la dependencia express 
-4. npm install body-parser --save para manejo de datos por post
+3. npm install express para instalar la dependencia express 
+4. npm install body-parser para manejo de datos por post
 5. codear en el index.js
 
 Para generar una estructura de proyecto:
@@ -25,6 +25,7 @@ Para no tener que reiniciar el servidor node en cada cambio:
 MYSQL con node.js
 https://www.linuxadictos.com/como-instalar-xampp-en-linux.html --> para instalar xampp en linux
 https://expressjs.com/es/guide/database-integration.html#mysql --> para instalar la dependencia en el proyecto y que quede en el package.json
+1-npm install mysql
 sudo /opt/lampp/manager-linux-x64.run --> comando para iniciar el panel de control xampp, tambien se puede iniciar los servidores mediante comandos
 
 - CALLBACKS:

@@ -268,7 +268,6 @@ function save(user) {
 }
 
 function getById(id, callback) { // hay que usar callbacks ya que las llamadas a base de datos son asincronas
-    var resultado = 0;
     connection.query('SELECT * FROM users WHERE user_id = ?', [id], function (error, result) { // funcion callback, de esta manera esperamos al resultado antes de continuar con la ejecucion
         if (error) {
             return callback(error);
