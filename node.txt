@@ -17,7 +17,7 @@ Para generar una estructura de proyecto:
 - npm install express-generator -g
 - express "nombre_proyecto"
 
-NODEMON:
+- NODEMON:
 Para no tener que reiniciar el servidor node en cada cambio:
 - https://nodemon.io/
 - si surge error al instalar, lo solucione usando: sudo npm install -g nodemon
@@ -26,3 +26,7 @@ MYSQL con node.js
 https://www.linuxadictos.com/como-instalar-xampp-en-linux.html --> para instalar xampp en linux
 https://expressjs.com/es/guide/database-integration.html#mysql --> para instalar la dependencia en el proyecto y que quede en el package.json
 sudo /opt/lampp/manager-linux-x64.run --> comando para iniciar el panel de control xampp, tambien se puede iniciar los servidores mediante comandos
+
+- CALLBACKS:
+Son funciones que se ejecutan despues de que otra funcion termine su ejecucion. Se usan para funciones que no tienen una respuesta inmediata, o que son asincronas, para de esta forma esperar a un resultado antes de continuar la ejecucion de la funcion
+https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced

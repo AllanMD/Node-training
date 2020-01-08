@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
-var birds = require('./birds');
-
+const dbConnection = require("./config/dbConnection"); // para conexion a bd
 const bodyParser = require('body-parser'); // para manejo de datos por post 
+
+var birds = require('./app/routes/birds');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/birds', birds);
@@ -13,7 +15,7 @@ let user = {
 };
 
 class User {
-    constructor(name, lastName) { // TODO: agregar id
+    constructor(name, lastName) {
         this.name = name;
         this.lastName = lastName;
     }
@@ -62,18 +64,16 @@ app.post("/hola", function (req, res) {
 app.route('/user')
 
     .get(function (req, res) {
-        response = {
-            error: false,
-            code: 200,
-            message: ""
-        };
-        getAll(function(error, result){
-            if(error){
+        const connection = dbConnection();
+        connection.query('SELECT * FROM users', function (error, results, fields) {
+            if (error) {
                 res.status(500).send("Error obteniendo los usuarios");
                 throw error;
+            } else {
+                res.status(200).send(results);
             }
-            res.status(200).send(result);
         });
+        connection.end();
     })
 
     .post(function (req, res) {
@@ -83,27 +83,21 @@ app.route('/user')
                 code: 502,
                 message: "El campo nombre y apellido son requeridos"
             };
-        } else {
-            if (user.name !== '' || user.lastName !== '') {
-                response = {
-                    error: true,
-                    code: 503,
-                    message: "El usuario ya fue creado previamente"
-                };
-            } else {
-                user = {
-                    name: req.body.name,
-                    lastName: req.body.lastName
-                };
-                response = {
-                    error: false,
-                    code: 200,
-                    message: "Usuario creado!",
-                    response: user
-                };
-            }
         }
-        save(user);
+        else {
+            user = {
+                name: req.body.name,
+                lastName: req.body.lastName
+            };
+            response = {
+                error: false,
+                code: 200,
+                message: "Usuario creado!",
+                response: user
+            };
+            save(user);
+        }
+
         res.status(response.code).send(response);
     })
 
@@ -164,32 +158,35 @@ app.route('/user')
  */
 app.get('/user/:id', function (req, res, next) {
     getById(req.params.id, function (error, result) {
-        if(error) {
+        if (error) {
             throw error;
         }
-        if(result.length > 0) {
+        if (result.length > 0) {
             var user = new User(result[0].name, result[0].last_name);
             res.status(200).send(user);
-        }else{
+        } else {
             res.status(404).send("No se encontro usuario con ese id");
         }
     });
     console.log('ID:', req.params.id);
 });
-// terminar: busqueda con querys
-app.get('/users', function(req, res){
-    if(req.query.id){
-        console.log("ID:" + req.query.id);
-        res.send("200");
-    }
-})
 
 /**
  * Para usar datos por query. Ejemplo: /user?id=2
  */
 app.get('/users', function (req, res) {
-    res.send(req.query.name); //TODO
-});
+    var response = "";
+    if (req.query.id) {
+        console.log("ID:" + req.query.id);
+        response = response + " " + req.query.id;
+    }
+    if (req.query.name) {
+        response = response + " " + req.query.name;
+    }
+    //en este caso retornariamos los usuarios filtrado segun lo recibido por query (?)
+
+    res.send(response);
+})
 
 /**
  * Este metodo se ejecuta con cualquier tipo de peticion
@@ -257,22 +254,8 @@ app.get(/a/, function (req, res) {
 
 
 // ----------- MYSQL --------------
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'node_mysql',
-    port: 3306
-});
-
-connection.connect(function (error) {
-    if (error) {
-        throw error;
-    } else {
-        console.log('Conexion correcta.');
-    }
-});
+// ejemplos practicos:
+const connection = dbConnection();
 
 function save(user) {
     connection.query('INSERT INTO users(name, last_name) VALUES(?,?)', [user.name, user.lastName], function (error, result) {
@@ -281,33 +264,25 @@ function save(user) {
         } else {
             console.log(result);
         }
-    }
-    );
-}
-
-function getAll(callback) {
-    connection.query('SELECT * FROM users', function (error, results, fields) {
-        if (error){
-            return callback(error);
-        }else{
-            return callback(null, results);
-        }
     });
 }
 
-function getById(id, cb) { // hay que usar callbacks ya que las llamadas a base de datos son asincronas
-    connection.query('SELECT * FROM users WHERE user_id = ?', [id], function (error, result) { // funcion callback
+function getById(id, callback) { // hay que usar callbacks ya que las llamadas a base de datos son asincronas
+    var resultado = 0;
+    connection.query('SELECT * FROM users WHERE user_id = ?', [id], function (error, result) { // funcion callback, de esta manera esperamos al resultado antes de continuar con la ejecucion
         if (error) {
-            return cb(error);
+            return callback(error);
         } else {
-            return cb(null, result); // retornamos un callback
+            return callback(null, result); // retornamos un callback
         }
     });
 }
-// TODO: explicar callback
+// Callbacks: Son funciones que se ejecutan despues de que otra funcion termine su ejecucion. 
+//Se usan para funciones que no tienen una respuesta inmediata, o que son asincronas, para de esta forma esperar a un resultado antes de continuar la ejecucion de la funcion
 
 getById(5, function (error, result) {
     console.log("Resultado: " + result[0].name);
 })
 
 //connection.end();    // TODO: averiguar esto
+// para iniciar el servidor: en terminal: node index.js o src/index.js (ubicacion del index.js)
