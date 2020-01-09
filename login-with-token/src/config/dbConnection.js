@@ -13,7 +13,7 @@ module.exports = () => {
         if (error) {
             throw error;
         } else {
-            console.log('Conexion a bd correcta.');
+            console.log('Conexion a bd exitosa!');
         }
     }); 
     

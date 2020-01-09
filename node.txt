@@ -17,6 +17,10 @@ Para generar una estructura de proyecto:
 - npm install express-generator -g
 - express "nombre_proyecto"
 
+- MIDDLEWARES:
+Son funciones que acceden a los datos request, response y next en las llamadas a una api
+http://expressjs.com/es/guide/writing-middleware.html
+
 - NODEMON:
 Para no tener que reiniciar el servidor node en cada cambio:
 - https://nodemon.io/
@@ -31,3 +35,18 @@ sudo /opt/lampp/manager-linux-x64.run --> comando para iniciar el panel de contr
 - CALLBACKS:
 Son funciones que se ejecutan despues de que otra funcion termine su ejecucion. Se usan para funciones que no tienen una respuesta inmediata, o que son asincronas, para de esta forma esperar a un resultado antes de continuar la ejecucion de la funcion
 https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced
+
+VIDEO USADO COMO AYUDA
+- https://www.youtube.com/watch?v=O3yNkUfkXfM
+
+TOKENS: 
+https://carlosazaustre.es/que-es-la-autenticacion-con-token/
+https://carlosazaustre.es/autenticacion-con-token-en-node-js/
+
+REDIS
+https://redis.io/download --> para instalar
+https://www.youtube.com/watch?v=aosnODRyppk ---> para instalar
+
+npm install redis-server ---> en la carpeta del proyecto
+
+
