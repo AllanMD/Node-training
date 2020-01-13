@@ -8,8 +8,8 @@ https://expressjs.com/es/starter/installing.html --> documentacion oficial
 https://medium.com/@asfo/desarrollando-una-sencilla-api-rest-con-nodejs-y-express-cab0813f7e4b
 1. Iniciar proyecto con: npm init
 2. Completar nombre del paquete, descrpicion , archivo de entrada como index.js y autor (si queremos), el resto dejar como esta.
-3. npm install express para instalar la dependencia express 
-4. npm install body-parser para manejo de datos por post
+3. npm install express --save --> para instalar la dependencia express // el --save es para guardarlo tambien en la lista de dependencias
+4. npm install body-parser --save --> para manejo de datos por post
 5. codear en el index.js
 
 Para generar una estructura de proyecto:
@@ -33,6 +33,8 @@ https://expressjs.com/es/guide/database-integration.html#mysql --> para instalar
 sudo /opt/lampp/manager-linux-x64.run --> comando para iniciar el panel de control xampp, tambien se puede iniciar los servidores mediante comandos
 sudo /opt/lampp/lampp start ---> iniciar servidores xampp
 sudo /opt/lampp/lampp stop ---> detener servidores xampp
+
+con mysql existen las pools para conectarse, el cual es un canal de conexion a la q pueden conectarse multiples funciones, y se supone que es mas eficiente
 
 sudo apt install net-tools --> para instalar un paquete que soluciona el error al querer iniciar servidores
 
@@ -60,5 +62,18 @@ http://nightdeveloper.net/usando-redis-nodejs/
 https://www.adictosaltrabajo.com/2017/02/09/asyncawait-en-javascript/
 Es otra forma de manejar asincronismo, en vez de manejar callbacks, se manejan promesas. Se utiliza el try, catch.
 
+#MYSQL 2
+npm install --save mysql2
+https://www.npmjs.com/package/mysql2
+
+#ARCHIVOS ESTATICOS
+para servir archivos estaticos, archivos que no cambian como por ejemplo imagenes, archvis css, js
+https://expressjs.com/es/starter/static-files.html
+https://www.youtube.com/watch?v=2ue0EAc6k_g
+
+#MULTER
+Modulo para subir archivos 
+https://www.npmjs.com/package/multer
+https://www.youtube.com/watch?v=AbJ-y2vZgBs --> tutorial (quede en el min 40)
 
 
