@@ -78,3 +78,10 @@ https://www.youtube.com/watch?v=AbJ-y2vZgBs --> tutorial (quede en el min 40)
 https://www.youtube.com/watch?v=aNYX2F1RX-s ---> tutorial mas avanzado
 
 
+#NODEMAILER
+Modulo node.js para el envio de emails.
+servidor smtp: es como un servidor que sirve como cartero para enviar un correo. Recibe un mail y se encarga de enviarlo a los destinarios
+https://serversmtp.com/es/que-es-servidor-smtp/ --> que es un servicio SMTP
+https://ethereal.email/ ---> simulador de servicio SMTP
+npm i nodemailer --> para instalar nodemailer en el proyecto
+https://www.youtube.com/watch?v=wu-1LpCyu1Y ---> tutorial usado para hacer la demo
