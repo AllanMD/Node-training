@@ -75,5 +75,6 @@ https://www.youtube.com/watch?v=2ue0EAc6k_g
 Modulo para subir archivos 
 https://www.npmjs.com/package/multer
 https://www.youtube.com/watch?v=AbJ-y2vZgBs --> tutorial (quede en el min 40)
+https://www.youtube.com/watch?v=aNYX2F1RX-s ---> tutorial mas avanzado
 
 
