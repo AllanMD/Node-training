@@ -21,10 +21,16 @@ Para generar una estructura de proyecto:
 Son funciones que acceden a los datos request, response y next en las llamadas a una api
 http://expressjs.com/es/guide/writing-middleware.html
 
-- NODEMON:
-Para no tener que reiniciar el servidor node en cada cambio:
+#NODEMON:
+Modulo de node que reinicia el servidor automaticamente en cada cambio que se haga en el codigo.
+npm install --save-dev nodemon --> para instalarlo y guardarlo como una dependencia de desarollo
 - https://nodemon.io/
 - si surge error al instalar, lo solucione usando: sudo npm install -g nodemon
+- nodemon index.js --> para levantar el servidor
+
+#DEV DEPENDENCIES
+Son dependencias de desarrollo. Estas dependencias no son necesarias en producion y la aplicacion puede funcionar sin ellas
+Ejemplo: nodemon, unit tests
 
 #MYSQL con node.js
 https://www.linuxadictos.com/como-instalar-xampp-en-linux.html --> para instalar xampp en linux
@@ -48,6 +54,9 @@ VIDEO USADO COMO AYUDA
 #TOKENS: 
 https://carlosazaustre.es/que-es-la-autenticacion-con-token/
 https://carlosazaustre.es/autenticacion-con-token-en-node-js/
+
+los tokens se pueden recibir desde el header, o desde las cookies. Depende del proyecto.
+En este tutorial se utiliza header.authentication 
 
 #REDIS
 https://redis.io/download --> para instalar
@@ -85,3 +94,12 @@ https://serversmtp.com/es/que-es-servidor-smtp/ --> que es un servicio SMTP
 https://ethereal.email/ ---> simulador de servicio SMTP
 npm i nodemailer --> para instalar nodemailer en el proyecto
 https://www.youtube.com/watch?v=wu-1LpCyu1Y ---> tutorial usado para hacer la demo
+
+#JWT
+https://www.sohamkamani.com/blog/javascript/2019-03-29-node-jwt-authentication/
+
+en el ejemplo de la pagina, hay que usar cookie-parser:
+npm i cookie-parser
+
+los tokens se pueden recibir desde el header, o desde las cookies. Depende del proyecto.
+En este tutorial, se hace con cookies
