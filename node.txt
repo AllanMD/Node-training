@@ -113,3 +113,9 @@ npm install chai --save
 
 https://www.chaijs.com/
 
+#LOGGER
+Un log es un registro del comprotamiento del sistema. Ante un error puede ser util para ver que es lo que fallo. 
+Hay distintos niveles de log, ejemplo: 1- error 2- warn ( warning) 3- info 4- verbose 5- debug 6 - silly
+- npm install winston --save
+https://www.youtube.com/watch?v=axOHMgZznpo
+

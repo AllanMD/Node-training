@@ -1,0 +1,38 @@
+{"message":"Servidor inicializado!","level":"info"}
+{"message":"\"Servidor inicializado!\"","level":"info"}
+{"message":"Servidor inicializado!","level":"info"}
+info: Servidor inicializado!
+info: Servidor inicializado!
+info: Servidor inicializado!
+info: Servidor inicializado!
+info: Servidor inicializado!
+info: Usuario autenticado!
+[2020-01-17T13:29:08.993Z] info Servidor inicializado!
+[2020-01-17 10:40:13] info Servidor inicializado!
+[2020-01-17 10:40:40] error Servidor inicializado!
+[2020-01-17 11:00:25] error Servidor inicializado!
+[2020-01-17 11:00:35] info Servidor inicializado!
+[2020-01-17 11:03:25] info Servidor inicializado!
+[2020-01-17 11:03:28] info Usuario autenticado!
+[2020-01-17 11:03:28] warn Warning logger
+[2020-01-17 11:03:28] error Error logger
+[2020-01-17 11:05:26] info Servidor inicializado!
+[2020-01-17 11:05:28] info Usuario autenticado!
+[2020-01-17 11:05:28] warn Warning logger
+[2020-01-17 11:05:28] error Error logger
+[2020-01-17 11:05:28] debug Debug logger
+[2020-01-17 11:07:28] info Servidor inicializado!
+[2020-01-17 11:07:42] info Servidor inicializado!
+[2020-01-17 11:07:54] info Servidor inicializado!
+[2020-01-17 11:09:06] info Servidor inicializado!
+[2020-01-17 11:17:14] info: Servidor inicializado!
+[2020-01-17 11:17:57] info: Usuario autenticado!
+[2020-01-17 11:17:57] warn: Warning logger
+[2020-01-17 11:17:57] error: Error logger
+[2020-01-17 11:17:57] debug: Debug logger
+[2020-01-17 11:22:32] info: Servidor inicializado!
+[2020-01-17 11:29:04] info: Servidor inicializado!
+[2020-01-17 11:29:05] info: Usuario autenticado!
+[2020-01-17 11:29:05] warn: Warning logger
+[2020-01-17 11:29:05] error: Error logger
+[2020-01-17 11:29:05] debug: Debug logger
