@@ -1,0 +1,27 @@
+ORM: MAPEO-OBJETO-RELACIONAL convierte datos de objetos para guardarlos en la bd.
+
+https://sequelize.org/v5/ ---> primero mirar "migrations", despues seguir por "getting started". 
+
+SEQUELIZE
+TUTORIAL:
+- npm install --save sequelize-cli
+- npm install --save sequelize
+- npm install --save mysql2 --> hay que tener los drivers de la base de datos a usar
+- crear archivo .sequelizerc y ahi especificar las rutas donde guardar las carpetas que se van a crear para sequelize. Sequelize usa este archivo para saber donde buscar las carpetas y los archivos que necesita.
+- npx sequelize-cli init ---> comando que crea las carpetas migrations, seeders, models y config.
+- en models, crear cada entidad que se vaya a usar en la aplicacion. cada modelo representa una tabla en la bd. Lo usa la aplicacion.
+- MIGRACIONES: son cambios y cosas que queremos ejecutar en la base de datos. Una vez hecha una migracion, se debe crear una nueva ante algun cambio que queramos hacer.
+- ejecutar luego de crear el modelo el comando: npx sequelize migration:create --name create_nombre-entidad_table
+- esto genera un archivo migration, con dos funciones: up y down. Up : lo que se ejecuta cuando corremos la migraciones. Down :lo que se ejecuta al revertir una migracion. Adentro de estos hay que especificar el codigo que deseemos que se ejecute en ambos casos.
+- npx sequelize-cli db:migrate --> para correr migraciones
+- npx sequelize-cli db:migrate:undo o :undo:all --> para revertir la ultima migracion o todas
+- SEEDERS: son datos por defecto que se pueden insertar en las tablas: se define en UP que datos insertar, y en DOWN como revertir esos datos insertados.
+- npx sequelize-cli seed:generate --name demo-user
+- npx sequelize-cli db:seed:all --> para ejecutar todos los seeders. 
+- npx sequelize-cli db:seed:undo:all ---> para revertir 
+Ejemplo: cargar una lista de paises, que es algo que probablemente no cambie en el futuro
+- MODELS: los modelos representan cada tabla de la bd. y los usa sequelize para relacionar los datos con los de la bd.
+- en los modelos se pueden asociar las tablas, y de esta manera nos ahorramos hacer los join, ya que lo trae todo junto
+- hay que poner createdAt y UpdatedAt en los models
+- FUNCIONES PARA INSERT, UPDATE, DELETE y FIND : https://sequelize.org/master/manual/model-querying-basics.html
+- luego de cada UPDATE, sequelize actualiza el campo "updatedAt" automaticamente.

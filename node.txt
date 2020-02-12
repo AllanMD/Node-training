@@ -15,7 +15,7 @@ https://medium.com/@asfo/desarrollando-una-sencilla-api-rest-con-nodejs-y-expres
 Para generar una estructura de proyecto:
 
 - npm install express-generator -g
-- express "nombre_proyecto"
+- express "nombre_proyecto" --no-view  // para que se genere sin motor de vistas
 
 #MIDDLEWARES:
 Son funciones que acceden a los datos request, response y next en las llamadas a una api
